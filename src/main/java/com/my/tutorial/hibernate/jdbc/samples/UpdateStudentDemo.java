@@ -28,7 +28,7 @@ public class UpdateStudentDemo {
 
             session.getTransaction().commit();
 
-            //new code
+            //another way
 
             session = factory.getCurrentSession();
             session.beginTransaction();
