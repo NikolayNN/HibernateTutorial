@@ -1,4 +1,4 @@
-package com.my.tutorial.hibernate.jdbc;
+package com.my.tutorial.hibernate.jdbc.samples;
 
 import com.my.tutorial.hibernate.jdbc.entity.Student;
 import org.hibernate.Session;
