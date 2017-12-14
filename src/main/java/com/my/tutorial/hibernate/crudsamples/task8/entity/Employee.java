@@ -1,4 +1,4 @@
-package com.my.tutorial.hibernate.jdbc.task8.entity;
+package com.my.tutorial.hibernate.crudsamples.task8.entity;
 
 import javax.persistence.*;
 

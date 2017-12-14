@@ -1,11 +1,11 @@
-package com.my.tutorial.hibernate.jdbc.samples;
+package com.my.tutorial.hibernate.crudsamples.samples;
 
-import com.my.tutorial.hibernate.jdbc.entity.Student;
+import com.my.tutorial.hibernate.crudsamples.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class DeleteStudentDemo {
+public class UpdateStudentDemo {
 
     public static void main(String[] args) {
 
@@ -17,18 +17,27 @@ public class DeleteStudentDemo {
         Session session = factory.getCurrentSession();
 
         try {
+            int studentId = 1;
             session.beginTransaction();
 
-            int studentId = 1;
             System.out.println("Getting student with id: " + studentId);
             Student student = session.get(Student.class, studentId);
-            session.delete(student);
+
+            System.out.println("Updating student...");
+            student.setFirstName("Scooby");
+
+            session.getTransaction().commit();
 
             //another way
 
-            session.createQuery("delete from Student where id=2").executeUpdate();
+            session = factory.getCurrentSession();
+            session.beginTransaction();
+
+            session.createQuery("update Student set email = 'foo@gmail.com'").executeUpdate();
 
             session.getTransaction().commit();
+
+            System.out.println("Done!");
 
         } finally {
             factory.close();

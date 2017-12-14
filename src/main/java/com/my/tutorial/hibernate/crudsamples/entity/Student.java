@@ -1,4 +1,4 @@
-package com.my.tutorial.hibernate.jdbc.entity;
+package com.my.tutorial.hibernate.crudsamples.entity;
 
 import javax.persistence.*;
 

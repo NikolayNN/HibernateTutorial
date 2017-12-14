@@ -1,6 +1,6 @@
-package com.my.tutorial.hibernate.jdbc.task8.entity.solution;
+package com.my.tutorial.hibernate.crudsamples.task8.solution;
 
-import com.my.tutorial.hibernate.jdbc.task8.entity.Employee;
+import com.my.tutorial.hibernate.crudsamples.task8.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

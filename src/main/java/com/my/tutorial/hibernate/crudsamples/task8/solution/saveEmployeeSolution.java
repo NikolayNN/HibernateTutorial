@@ -1,13 +1,12 @@
-package com.my.tutorial.hibernate.jdbc.task8.entity.solution;
+package com.my.tutorial.hibernate.crudsamples.task8.solution;
 
-import com.my.tutorial.hibernate.jdbc.task8.entity.Employee;
+import com.my.tutorial.hibernate.crudsamples.task8.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import java.util.List;
+public class saveEmployeeSolution {
 
-public class deleteEmployeeSolution {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure()
@@ -18,9 +17,8 @@ public class deleteEmployeeSolution {
             Session session = factory.getCurrentSession();
             session.beginTransaction();
 
-            Employee employee = session.get(Employee.class, 2);
-
-            session.delete(employee);
+            Employee employee = new Employee("John", "White", "Oracle");
+            session.save(employee);
 
             session.getTransaction().commit();
 

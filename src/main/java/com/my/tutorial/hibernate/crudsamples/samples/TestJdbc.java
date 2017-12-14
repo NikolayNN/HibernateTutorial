@@ -1,4 +1,4 @@
-package com.my.tutorial.hibernate.jdbc.samples;
+package com.my.tutorial.hibernate.crudsamples.samples;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

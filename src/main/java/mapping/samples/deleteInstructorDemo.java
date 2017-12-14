@@ -1,34 +1,35 @@
-package com.my.tutorial.hibernate.jdbc.samples;
+package mapping.samples;
 
-import com.my.tutorial.hibernate.jdbc.entity.Student;
+import mapping.entity.Instructor;
+import mapping.entity.InstructorDetail;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class CreateStudentDemo {
-
+public class deleteInstructorDemo {
     public static void main(String[] args) {
+
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Student.class)
+                .addAnnotatedClass(Instructor.class)
+                .addAnnotatedClass(InstructorDetail.class)
                 .buildSessionFactory();
 
         Session session = factory.getCurrentSession();
 
-        try{
-            Student student = new Student("Paul", "White", "paul.white@gmail.com");
+        int theId = 1;
 
+        try{
             session.beginTransaction();
 
-            session.save(student);
+            Instructor instructor = session.get(Instructor.class, theId);
 
+            if(instructor != null) {
+                session.delete(instructor);
+            }
             session.getTransaction().commit();
-
-            System.out.println("Done!");
-
         }finally {
             factory.close();
         }
     }
-
 }

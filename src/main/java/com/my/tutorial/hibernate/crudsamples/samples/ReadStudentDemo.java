@@ -1,11 +1,11 @@
-package com.my.tutorial.hibernate.jdbc.samples;
+package com.my.tutorial.hibernate.crudsamples.samples;
 
-import com.my.tutorial.hibernate.jdbc.entity.Student;
+import com.my.tutorial.hibernate.crudsamples.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class UpdateStudentDemo {
+public class ReadStudentDemo {
 
     public static void main(String[] args) {
 
@@ -17,24 +17,23 @@ public class UpdateStudentDemo {
         Session session = factory.getCurrentSession();
 
         try {
-            int studentId = 1;
+            Student student = new Student("Daffy", "Dog", "daffy@gmail.com");
+
             session.beginTransaction();
 
-            System.out.println("Getting student with id: " + studentId);
-            Student student = session.get(Student.class, studentId);
-
-            System.out.println("Updating student...");
-            student.setFirstName("Scooby");
+            session.save(student);
 
             session.getTransaction().commit();
 
-            //another way
+            System.out.println("Done!");
+            System.out.println("Generated id: " + student.getId());
 
             session = factory.getCurrentSession();
             session.beginTransaction();
 
-            session.createQuery("update Student set email = 'foo@gmail.com'").executeUpdate();
+            Student myStudent = session.get(Student.class, student.getId());
 
+            System.out.println("Get complete " + myStudent);
             session.getTransaction().commit();
 
             System.out.println("Done!");
