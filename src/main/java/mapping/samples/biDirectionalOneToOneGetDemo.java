@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class biDirectionalOneToOneDemo {
+public class biDirectionalOneToOneGetDemo {
 
     public static void main(String[] args) {
         SessionFactory sessionFactory = new Configuration()
@@ -17,19 +17,19 @@ public class biDirectionalOneToOneDemo {
 
         Session session = sessionFactory.getCurrentSession();
 
-        try{
+        try {
 
-        session.beginTransaction();
+            session.beginTransaction();
 
-        int theId = 1999;
-        InstructorDetail instructorDetail = session.get(InstructorDetail.class, theId);
+            int theId = 1999;
+            InstructorDetail instructorDetail = session.get(InstructorDetail.class, theId);
 
             System.out.println(instructorDetail.getInstructor());
+            session.getTransaction().commit();
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             session.close();
             sessionFactory.close();
         }
