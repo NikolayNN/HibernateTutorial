@@ -6,8 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class biDirectionalOneToOneDeleteDemo {
-
+public class biDirectionalOneToOneMappingDeleteNotCascade {
     public static void main(String[] args) {
         SessionFactory sessionFactory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -21,12 +20,13 @@ public class biDirectionalOneToOneDeleteDemo {
 
             session.beginTransaction();
 
-            int theId = 4;
+            int theId = 5;
             InstructorDetail instructorDetail = session.get(InstructorDetail.class, theId);
+
+            instructorDetail.getInstructor().setInstructorDetail(null);
 
             if (instructorDetail != null) {
                 session.delete(instructorDetail);
-                System.out.println(instructorDetail.getInstructor());
             }
 
             session.getTransaction().commit();
@@ -38,5 +38,4 @@ public class biDirectionalOneToOneDeleteDemo {
             sessionFactory.close();
         }
     }
-
 }
