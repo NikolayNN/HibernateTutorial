@@ -1,4 +1,4 @@
-package mapping.samples;
+package mapping.onetoone.samples;
 
 import mapping.entity.Instructor;
 import mapping.entity.InstructorDetail;
@@ -6,8 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class biDirectionalOneToOneGetDemo {
-
+public class biDirectionalOneToOneMappingDeleteNotCascade {
     public static void main(String[] args) {
         SessionFactory sessionFactory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -21,10 +20,15 @@ public class biDirectionalOneToOneGetDemo {
 
             session.beginTransaction();
 
-            int theId = 1999;
+            int theId = 5;
             InstructorDetail instructorDetail = session.get(InstructorDetail.class, theId);
 
-            System.out.println(instructorDetail.getInstructor());
+            instructorDetail.getInstructor().setInstructorDetail(null);
+
+            if (instructorDetail != null) {
+                session.delete(instructorDetail);
+            }
+
             session.getTransaction().commit();
 
         } catch (Exception e) {

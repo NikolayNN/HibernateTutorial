@@ -1,21 +1,13 @@
-package mapping.samples;
+package mapping.onetoone.samples;
 
-import com.my.tutorial.hibernate.crudsamples.entity.Student;
 import mapping.entity.Instructor;
 import mapping.entity.InstructorDetail;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class createInstructorDemo {
-
+public class deleteInstructorDemo {
     public static void main(String[] args) {
-
-        Instructor instructor = new Instructor();
-        instructor.setFirstName("Madhu");
-        instructor.setLastName("Patel");
-        instructor.setEmail("madhu@gmail.com");
-        instructor.setInstructorDetail(new InstructorDetail("youtube.channel", "code"));
 
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -25,15 +17,19 @@ public class createInstructorDemo {
 
         Session session = factory.getCurrentSession();
 
+        int theId = 1;
+
         try{
             session.beginTransaction();
 
-            session.save(instructor);
+            Instructor instructor = session.get(Instructor.class, theId);
 
+            if(instructor != null) {
+                session.delete(instructor);
+            }
             session.getTransaction().commit();
         }finally {
             factory.close();
         }
-
     }
 }

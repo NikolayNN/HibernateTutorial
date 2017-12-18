@@ -1,4 +1,4 @@
-package mapping.samples;
+package mapping.onetoone.samples;
 
 import mapping.entity.Instructor;
 import mapping.entity.InstructorDetail;

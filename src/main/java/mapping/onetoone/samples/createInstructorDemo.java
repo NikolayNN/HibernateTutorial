@@ -1,4 +1,4 @@
-package mapping.samples;
+package mapping.onetoone.samples;
 
 import mapping.entity.Instructor;
 import mapping.entity.InstructorDetail;
@@ -6,8 +6,15 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class deleteInstructorDemo {
+public class createInstructorDemo {
+
     public static void main(String[] args) {
+
+        Instructor instructor = new Instructor();
+        instructor.setFirstName("Madhu");
+        instructor.setLastName("Patel");
+        instructor.setEmail("madhu@gmail.com");
+        instructor.setInstructorDetail(new InstructorDetail("youtube.channel", "code"));
 
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -17,19 +24,15 @@ public class deleteInstructorDemo {
 
         Session session = factory.getCurrentSession();
 
-        int theId = 1;
-
         try{
             session.beginTransaction();
 
-            Instructor instructor = session.get(Instructor.class, theId);
+            session.save(instructor);
 
-            if(instructor != null) {
-                session.delete(instructor);
-            }
             session.getTransaction().commit();
         }finally {
             factory.close();
         }
+
     }
 }
